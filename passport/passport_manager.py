@@ -29,7 +29,7 @@ class PassportManager:
         return self.data.get("agent", {})
 
     def get_agent_name(self) -> str:
-        return self.get_agent_info().get("name", "smart-home-energy-agent")
+        return self.data.get("name") or self.get_agent_info().get("name", "smart-home-energy-agent")
 
     def get_agent_id(self) -> str:
         return self.get_agent_info().get("id", "smart-home-energy-agent-01")

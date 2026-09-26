@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Tuple
 class PassportSchemaValidator:
     """Validates Agent Passport (agent.yaml) schema consistency."""
 
-    REQUIRED_ROOT_KEYS = ["spec_version", "agent", "capabilities", "tools", "passport"]
+    REQUIRED_ROOT_KEYS = ["spec_version", "name", "agent", "capabilities", "tools", "passport"]
     REQUIRED_AGENT_KEYS = ["name", "id", "version"]
 
     @classmethod
@@ -23,6 +23,11 @@ class PassportSchemaValidator:
         # Spec version check
         if passport_data.get("spec_version") != "0.1.0":
             errors.append(f"Invalid spec_version: expected '0.1.0', got '{passport_data.get('spec_version')}'.")
+
+        # Root name check
+        root_name = passport_data.get("name", "")
+        if not root_name or not root_name[0].isalpha() or root_name != root_name.lower() or " " in root_name:
+            errors.append(f"Root-level agent name '{root_name}' must be lowercase, hyphenated, and start with a letter.")
 
         # Agent section check
         agent_sec = passport_data.get("agent", {})

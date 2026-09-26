@@ -1,4 +1,5 @@
 spec_version: "0.1.0"
+name: "smart-home-energy-agent"
 agent:
   name: "smart-home-energy-agent"
   id: "smart-home-energy-agent-01"

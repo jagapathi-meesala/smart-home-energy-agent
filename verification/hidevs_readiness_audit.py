@@ -52,8 +52,12 @@ class HiDevsReadinessAudit:
             if mgr.data.get("spec_version") != "0.1.0":
                 issues.append(f"agent.yaml spec_version is '{mgr.data.get('spec_version')}', expected '0.1.0'.")
 
+            root_name = mgr.data.get("name")
+            if root_name != "smart-home-energy-agent":
+                issues.append(f"Root-level agent name is '{root_name}', expected 'smart-home-energy-agent'.")
+
             if agent_info.get("name") != "smart-home-energy-agent":
-                issues.append(f"Agent name is '{agent_info.get('name')}', expected 'smart-home-energy-agent'.")
+                issues.append(f"Agent section name is '{agent_info.get('name')}', expected 'smart-home-energy-agent'.")
 
             caps = mgr.get_capabilities()
             tools = mgr.get_tools()
