@@ -3,8 +3,7 @@ from typing import Any, Dict, List, Tuple
 class PassportSchemaValidator:
     """Validates Agent Passport (agent.yaml) schema consistency."""
 
-    REQUIRED_ROOT_KEYS = ["spec_version", "name", "version", "description", "agent", "capabilities", "tools", "passport"]
-    REQUIRED_AGENT_KEYS = ["name", "id", "version"]
+    REQUIRED_ROOT_KEYS = ["spec_version", "name", "id", "version", "description", "capabilities", "tools", "passport"]
 
     @classmethod
     def validate(cls, passport_data: Dict[str, Any]) -> Tuple[bool, List[str]]:
@@ -39,19 +38,10 @@ class PassportSchemaValidator:
         if not root_desc or not str(root_desc).strip():
             errors.append("Root-level description is required.")
 
-        # Agent section check
-        agent_sec = passport_data.get("agent", {})
-        if not isinstance(agent_sec, dict):
-            errors.append("'agent' section must be a dictionary.")
-        else:
-            for ak in cls.REQUIRED_AGENT_KEYS:
-                if ak not in agent_sec or not str(agent_sec[ak]).strip():
-                    errors.append(f"Missing required key in 'agent': '{ak}'.")
-
-            # Validate agent name format: lowercase, hyphenated, starts with letter
-            name = agent_sec.get("name", "")
-            if not name or not name[0].isalpha() or name != name.lower() or " " in name:
-                errors.append(f"Agent name '{name}' must be lowercase, hyphenated, and start with a letter.")
+        # Root id check
+        root_id = passport_data.get("id", "")
+        if not root_id or not str(root_id).strip():
+            errors.append("Root-level id is required.")
 
         # Capabilities check
         capabilities = passport_data.get("capabilities", [])

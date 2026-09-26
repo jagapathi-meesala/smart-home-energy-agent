@@ -25,20 +25,17 @@ class PassportManager:
 
         self.data = raw_data
 
-    def get_agent_info(self) -> Dict[str, Any]:
-        return self.data.get("agent", {})
-
     def get_agent_name(self) -> str:
-        return self.data.get("name") or self.get_agent_info().get("name", "smart-home-energy-agent")
+        return self.data.get("name", "smart-home-energy-agent")
 
     def get_agent_id(self) -> str:
-        return self.get_agent_info().get("id", "smart-home-energy-agent-01")
+        return self.data.get("id", "smart-home-energy-agent-01")
 
     def get_version(self) -> str:
-        return self.data.get("version") or self.get_agent_info().get("version", "1.0.0")
+        return self.data.get("version", "1.0.0")
 
     def get_description(self) -> str:
-        return self.data.get("description") or self.get_agent_info().get("description", "")
+        return self.data.get("description", "")
 
     def get_capabilities(self) -> List[str]:
         caps = self.data.get("capabilities", [])
@@ -64,7 +61,7 @@ class PassportManager:
     def get_metadata(self) -> Dict[str, Any]:
         return {
             "spec_version": self.data.get("spec_version"),
-            "agent": self.get_agent_info(),
+            "agent_id": self.get_agent_id(),
             "passport": self.data.get("passport", {}),
             "capabilities_count": len(self.get_capabilities()),
             "tools_count": len(self.get_tools())

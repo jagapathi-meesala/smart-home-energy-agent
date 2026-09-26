@@ -48,13 +48,16 @@ class HiDevsReadinessAudit:
         # 2. Agent Passport Check
         try:
             mgr = PassportManager()
-            agent_info = mgr.get_agent_info()
             if mgr.data.get("spec_version") != "0.1.0":
                 issues.append(f"agent.yaml spec_version is '{mgr.data.get('spec_version')}', expected '0.1.0'.")
 
             root_name = mgr.data.get("name")
             if root_name != "smart-home-energy-agent":
                 issues.append(f"Root-level agent name is '{root_name}', expected 'smart-home-energy-agent'.")
+
+            root_id = mgr.data.get("id")
+            if root_id != "smart-home-energy-agent-01":
+                issues.append(f"Root-level agent id is '{root_id}', expected 'smart-home-energy-agent-01'.")
 
             root_ver = mgr.data.get("version")
             if root_ver != "1.0.0":
@@ -63,9 +66,6 @@ class HiDevsReadinessAudit:
             root_desc = mgr.data.get("description")
             if not root_desc or not str(root_desc).strip():
                 issues.append("Root-level description is missing in agent.yaml.")
-
-            if agent_info.get("name") != "smart-home-energy-agent":
-                issues.append(f"Agent section name is '{agent_info.get('name')}', expected 'smart-home-energy-agent'.")
 
             caps = mgr.get_capabilities()
             tools = mgr.get_tools()
