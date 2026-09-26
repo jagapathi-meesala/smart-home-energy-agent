@@ -35,7 +35,7 @@ class PassportManager:
         return self.get_agent_info().get("id", "smart-home-energy-agent-01")
 
     def get_version(self) -> str:
-        return self.get_agent_info().get("version", "1.0.0")
+        return self.data.get("version") or self.get_agent_info().get("version", "1.0.0")
 
     def get_capabilities(self) -> List[str]:
         caps = self.data.get("capabilities", [])

@@ -56,6 +56,10 @@ class HiDevsReadinessAudit:
             if root_name != "smart-home-energy-agent":
                 issues.append(f"Root-level agent name is '{root_name}', expected 'smart-home-energy-agent'.")
 
+            root_ver = mgr.data.get("version")
+            if root_ver != "1.0.0":
+                issues.append(f"Root-level version is '{root_ver}', expected '1.0.0'.")
+
             if agent_info.get("name") != "smart-home-energy-agent":
                 issues.append(f"Agent section name is '{agent_info.get('name')}', expected 'smart-home-energy-agent'.")
 
