@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Tuple
 class PassportSchemaValidator:
     """Validates Agent Passport (agent.yaml) schema consistency."""
 
-    REQUIRED_ROOT_KEYS = ["spec_version", "name", "version", "agent", "capabilities", "tools", "passport"]
+    REQUIRED_ROOT_KEYS = ["spec_version", "name", "version", "description", "agent", "capabilities", "tools", "passport"]
     REQUIRED_AGENT_KEYS = ["name", "id", "version"]
 
     @classmethod
@@ -33,6 +33,11 @@ class PassportSchemaValidator:
         root_ver = passport_data.get("version", "")
         if not root_ver or not str(root_ver).strip():
             errors.append("Root-level version is required.")
+
+        # Root description check
+        root_desc = passport_data.get("description", "")
+        if not root_desc or not str(root_desc).strip():
+            errors.append("Root-level description is required.")
 
         # Agent section check
         agent_sec = passport_data.get("agent", {})

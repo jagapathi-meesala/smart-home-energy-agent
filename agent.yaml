@@ -1,6 +1,7 @@
 spec_version: "0.1.0"
 name: "smart-home-energy-agent"
 version: "1.0.0"
+description: "A framework-independent, portable AI agent for smart home energy consumption analysis, pattern detection, anomaly detection, cost estimation, recommendations, and reporting."
 agent:
   name: "smart-home-energy-agent"
   id: "smart-home-energy-agent-01"

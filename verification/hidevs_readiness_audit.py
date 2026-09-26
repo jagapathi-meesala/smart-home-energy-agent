@@ -60,6 +60,10 @@ class HiDevsReadinessAudit:
             if root_ver != "1.0.0":
                 issues.append(f"Root-level version is '{root_ver}', expected '1.0.0'.")
 
+            root_desc = mgr.data.get("description")
+            if not root_desc or not str(root_desc).strip():
+                issues.append("Root-level description is missing in agent.yaml.")
+
             if agent_info.get("name") != "smart-home-energy-agent":
                 issues.append(f"Agent section name is '{agent_info.get('name')}', expected 'smart-home-energy-agent'.")
 

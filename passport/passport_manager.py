@@ -37,6 +37,9 @@ class PassportManager:
     def get_version(self) -> str:
         return self.data.get("version") or self.get_agent_info().get("version", "1.0.0")
 
+    def get_description(self) -> str:
+        return self.data.get("description") or self.get_agent_info().get("description", "")
+
     def get_capabilities(self) -> List[str]:
         caps = self.data.get("capabilities", [])
         return [c["name"] for c in caps if isinstance(c, dict) and "name" in c]
