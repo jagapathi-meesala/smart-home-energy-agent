@@ -5,7 +5,7 @@ from tools.energy_pattern_detector import EnergyPatternDetectorTool
 from tools.tool_registry import BaseTool
 
 class EnergyRecommendationTool(BaseTool):
-    name = "energy_recommendation_tool"
+    name = "energy-recommendation"
     description = "Generate analytical energy-saving recommendations based on statistical usage metrics."
     capability = "energy_saving_recommendation"
 

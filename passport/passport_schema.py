@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Tuple
 class PassportSchemaValidator:
     """Validates Agent Passport (agent.yaml) schema consistency."""
 
-    REQUIRED_ROOT_KEYS = ["spec_version", "name", "id", "version", "description", "capabilities", "tools", "passport"]
+    REQUIRED_ROOT_KEYS = ["spec_version", "name", "version", "description", "tools", "metadata"]
 
     @classmethod
     def validate(cls, passport_data: Dict[str, Any]) -> Tuple[bool, List[str]]:
@@ -38,19 +38,14 @@ class PassportSchemaValidator:
         if not root_desc or not str(root_desc).strip():
             errors.append("Root-level description is required.")
 
-        # Root id check
-        root_id = passport_data.get("id", "")
-        if not root_id or not str(root_id).strip():
-            errors.append("Root-level id is required.")
-
-        # Capabilities check
-        capabilities = passport_data.get("capabilities", [])
-        if not isinstance(capabilities, list) or len(capabilities) == 0:
-            errors.append("Capabilities section must be a non-empty list.")
+        # Metadata id check
+        metadata_sec = passport_data.get("metadata", {})
+        if not isinstance(metadata_sec, dict):
+            errors.append("'metadata' section must be a dictionary.")
         else:
-            for idx, cap in enumerate(capabilities):
-                if not isinstance(cap, dict) or "name" not in cap:
-                    errors.append(f"Capability at index {idx} must be a dictionary with a 'name' field.")
+            root_id = metadata_sec.get("id", "")
+            if not root_id or not str(root_id).strip():
+                errors.append("Metadata 'id' is required.")
 
         # Tools check
         tools = passport_data.get("tools", [])
@@ -58,7 +53,7 @@ class PassportSchemaValidator:
             errors.append("Tools section must be a non-empty list.")
         else:
             for idx, tool in enumerate(tools):
-                if not isinstance(tool, dict) or "name" not in tool:
-                    errors.append(f"Tool at index {idx} must be a dictionary with a 'name' field.")
+                if not isinstance(tool, str) or not tool.strip():
+                    errors.append(f"Tool at index {idx} must be a non-empty string.")
 
         return (len(errors) == 0), errors

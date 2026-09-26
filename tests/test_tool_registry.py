@@ -6,9 +6,9 @@ def test_tool_registry_registration_and_lookup():
     tool = EnergyConsumptionAnalyzerTool()
     registry.register(tool)
 
-    assert registry.exists("energy_consumption_analyzer_tool")
-    assert registry.get("energy_consumption_analyzer_tool") == tool
-    assert "energy_consumption_analyzer_tool" in registry.list()
+    assert registry.exists("energy-consumption-analyzer")
+    assert registry.get("energy-consumption-analyzer") == tool
+    assert "energy-consumption-analyzer" in registry.list()
 
 def test_tool_registry_execute():
     registry = ToolRegistry()
@@ -16,6 +16,6 @@ def test_tool_registry_execute():
     registry.register(tool)
 
     records = [{"timestamp": "2026-09-01T10:00:00", "device": "hvac", "energy_kwh": 2.0}]
-    ok, result, err = registry.execute("energy_consumption_analyzer_tool", records)
+    ok, result, err = registry.execute("energy-consumption-analyzer", records)
     assert ok is True
     assert result["total_energy_kwh"] == 2.0

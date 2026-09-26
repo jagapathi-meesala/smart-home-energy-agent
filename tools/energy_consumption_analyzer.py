@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from tools.tool_registry import BaseTool
 
 class EnergyConsumptionAnalyzerTool(BaseTool):
-    name = "energy_consumption_analyzer_tool"
+    name = "energy-consumption-analyzer"
     description = "Analyze generic energy-consumption records for peak, average, minimum, total, and distribution metrics."
     capability = "energy_consumption_analysis"
 

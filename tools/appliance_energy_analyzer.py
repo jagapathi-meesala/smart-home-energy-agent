@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from tools.tool_registry import BaseTool
 
 class ApplianceEnergyAnalyzerTool(BaseTool):
-    name = "appliance_energy_analyzer_tool"
+    name = "appliance-energy-analyzer"
     description = "Analyze energy consumption by appliance/device category dynamically."
     capability = "appliance_energy_analysis"
 

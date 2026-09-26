@@ -1,0 +1,5 @@
+name: "energy-pattern-detector"
+description: "Tool to analyze temporal distribution and identify usage patterns across hours and days. Capability: Detect hourly, daily, and weekday vs weekend energy usage patterns."
+inputSchema:
+  type: "object"
+  properties: {}

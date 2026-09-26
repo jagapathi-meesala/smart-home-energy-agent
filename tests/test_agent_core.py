@@ -7,7 +7,7 @@ def test_agent_core_handle_request_success():
     ]
     resp = core.handle_request("energy_consumption_analysis", data)
     assert resp["status"] == "success"
-    assert resp["tool"] == "energy_consumption_analyzer_tool"
+    assert resp["tool"] == "energy-consumption-analyzer"
     assert "lifecycle" in resp["metadata"]
 
 def test_agent_core_unknown_capability():

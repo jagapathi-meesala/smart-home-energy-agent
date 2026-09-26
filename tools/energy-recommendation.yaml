@@ -1,0 +1,5 @@
+name: "energy-recommendation"
+description: "Tool to derive analytical energy efficiency suggestions with safety disclaimers. Capability: Generate analytical energy-saving recommendations based on usage patterns and anomalies."
+inputSchema:
+  type: "object"
+  properties: {}

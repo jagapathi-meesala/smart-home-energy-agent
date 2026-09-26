@@ -1,0 +1,5 @@
+name: "energy-anomaly-detector"
+description: "Tool to detect consumption anomalies with statistical scoring and explicit explanations. Capability: Identify unusual energy consumption records using deterministic statistical methods."
+inputSchema:
+  type: "object"
+  properties: {}

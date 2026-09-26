@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from tools.tool_registry import BaseTool
 
 class EnergyPatternDetectorTool(BaseTool):
-    name = "energy_pattern_detector_tool"
+    name = "energy-pattern-detector"
     description = "Detect temporal energy usage patterns deterministically (hourly, daily, weekday/weekend)."
     capability = "energy_pattern_detection"
 

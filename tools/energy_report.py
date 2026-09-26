@@ -9,7 +9,7 @@ from tools.energy_recommendation import EnergyRecommendationTool
 from tools.tool_registry import BaseTool
 
 class EnergyReportTool(BaseTool):
-    name = "energy_report_tool"
+    name = "energy-report"
     description = "Generate a comprehensive structured JSON energy report synthesizing all analysis modules."
     capability = "energy_reporting"
 

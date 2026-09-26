@@ -1,0 +1,5 @@
+name: "energy-cost-estimator"
+description: "Tool to calculate financial cost from kWh energy consumption and tariffs. Capability: Estimate electricity cost based on consumption kWh and tariff rates."
+inputSchema:
+  type: "object"
+  properties: {}

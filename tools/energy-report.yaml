@@ -1,0 +1,5 @@
+name: "energy-report"
+description: "Tool to assemble comprehensive structured energy reports. Capability: Synthesize complete structured JSON energy reports containing statistics, breakdowns, anomalies, cost, and recommendations."
+inputSchema:
+  type: "object"
+  properties: {}

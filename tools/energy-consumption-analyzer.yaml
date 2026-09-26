@@ -1,0 +1,5 @@
+name: "energy-consumption-analyzer"
+description: "Tool to compute energy metrics, distributions, and summary statistics from records. Capability: Analyze generic energy-consumption records for peak, average, minimum, total, and distribution metrics."
+inputSchema:
+  type: "object"
+  properties: {}

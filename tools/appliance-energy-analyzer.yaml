@@ -1,0 +1,5 @@
+name: "appliance-energy-analyzer"
+description: "Tool to calculate category/appliance level consumption breakdown and statistics. Capability: Analyze energy consumption broken down by device or appliance categories."
+inputSchema:
+  type: "object"
+  properties: {}

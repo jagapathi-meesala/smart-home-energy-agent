@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from tools.tool_registry import BaseTool
 
 class EnergyAnomalyDetectorTool(BaseTool):
-    name = "energy_anomaly_detector_tool"
+    name = "energy-anomaly-detector"
     description = "Identify unusual energy consumption records using deterministic statistical methods (Z-score, IQR, threshold)."
     capability = "energy_anomaly_detection"
 

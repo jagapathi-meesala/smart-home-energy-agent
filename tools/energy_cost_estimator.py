@@ -3,7 +3,7 @@ from contracts.input_contract import InputContract
 from tools.tool_registry import BaseTool
 
 class EnergyCostEstimatorTool(BaseTool):
-    name = "energy_cost_estimator_tool"
+    name = "energy-cost-estimator"
     description = "Estimate electricity cost based on total consumption kWh and dynamic tariff rate."
     capability = "energy_cost_estimation"
 

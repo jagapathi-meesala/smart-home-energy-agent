@@ -1,5 +1,10 @@
+import os
+import sys
 from pathlib import Path
 from typing import Any, Dict, List
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from config.settings import settings
 from passport.passport_manager import PassportManager
 
@@ -55,7 +60,7 @@ class HiDevsReadinessAudit:
             if root_name != "smart-home-energy-agent":
                 issues.append(f"Root-level agent name is '{root_name}', expected 'smart-home-energy-agent'.")
 
-            root_id = mgr.data.get("id")
+            root_id = mgr.data.get("metadata", {}).get("id")
             if root_id != "smart-home-energy-agent-01":
                 issues.append(f"Root-level agent id is '{root_id}', expected 'smart-home-energy-agent-01'.")
 
@@ -67,12 +72,11 @@ class HiDevsReadinessAudit:
             if not root_desc or not str(root_desc).strip():
                 issues.append("Root-level description is missing in agent.yaml.")
 
-            caps = mgr.get_capabilities()
             tools = mgr.get_tools()
-            if not caps or not tools:
-                issues.append("Agent Passport contains empty capabilities or tools list.")
+            if not tools:
+                issues.append("Agent Passport contains empty tools list.")
             else:
-                details.append(f"Passport capabilities ({len(caps)}) and tools ({len(tools)}) validated.")
+                details.append(f"Passport tools ({len(tools)}) validated.")
         except Exception as e:
             issues.append(f"PassportManager loading error: {str(e)}")
 
